@@ -1,6 +1,7 @@
 package com.caladapt.ui.components
 
 import androidx.compose.animation.core.*
+import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
@@ -17,7 +18,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.geometry.Offset
+import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.Brush
+import androidx.compose.ui.graphics.drawscope.Fill
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.graphics.vector.ImageVector
@@ -40,8 +43,43 @@ fun MeshBackground(
     modifier: Modifier = Modifier,
     content: @Composable BoxScope.() -> Unit
 ) {
-    Box(modifier = modifier.background(AppBackgroundAlt)) {
-        // Content layer
+    val infiniteTransition = rememberInfiniteTransition(label = "mesh_motion")
+    val drift by infiniteTransition.animateFloat(
+        initialValue = 0f,
+        targetValue = 1f,
+        animationSpec = infiniteRepeatable(
+            animation = tween(durationMillis = 14000, easing = FastOutSlowInEasing),
+            repeatMode = RepeatMode.Reverse
+        ),
+        label = "mesh_drift"
+    )
+
+    Box(modifier = modifier.background(AppBackground)) {
+        Canvas(modifier = Modifier.fillMaxSize()) {
+            drawRect(
+                brush = Brush.verticalGradient(
+                    listOf(AppBackgroundAlt, AppBackground, Color(0xFFFFEFE8))
+                )
+            )
+            drawOval(
+                color = AccentRed.copy(alpha = 0.18f),
+                topLeft = Offset(-size.width * 0.35f + drift * 48f, -size.height * 0.12f + drift * 36f),
+                size = Size(size.width * 0.90f, size.width * 0.90f),
+                style = Fill
+            )
+            drawOval(
+                color = AccentTeal.copy(alpha = 0.18f),
+                topLeft = Offset(size.width * 0.48f - drift * 52f, size.height * 0.18f + drift * 42f),
+                size = Size(size.width * 0.82f, size.width * 0.82f),
+                style = Fill
+            )
+            drawOval(
+                color = AccentYellow.copy(alpha = 0.16f),
+                topLeft = Offset(size.width * 0.05f + drift * 34f, size.height * 0.68f - drift * 28f),
+                size = Size(size.width * 0.70f, size.width * 0.70f),
+                style = Fill
+            )
+        }
         Box(
             modifier = Modifier.fillMaxSize(),
             content = content
@@ -63,13 +101,19 @@ fun GlassCard(
         modifier = modifier
             .fillMaxWidth()
             .shadow(
-                elevation = 16.dp,
+                elevation = 18.dp,
                 shape = RoundedCornerShape(cornerRadius),
                 ambientColor = ShadowLow,
                 spotColor = ShadowHigh
             )
             .clip(RoundedCornerShape(cornerRadius))
-            .background(GlassBg)
+            .background(
+                brush = Brush.linearGradient(
+                    colors = listOf(GlassBg, Color.White.copy(alpha = 0.58f)),
+                    start = Offset(0f, 0f),
+                    end = Offset(Float.POSITIVE_INFINITY, Float.POSITIVE_INFINITY)
+                )
+            )
             .border(
                 width = 1.dp,
                 brush = Brush.linearGradient(
@@ -79,7 +123,7 @@ fun GlassCard(
                 ),
                 shape = RoundedCornerShape(cornerRadius)
             )
-            .padding(24.dp), // Increase padding slightly for 8pt grid consistency
+            .padding(20.dp),
         content = content
     )
 }
@@ -287,7 +331,7 @@ fun GlassOutlinedButton(
         shape = RoundedCornerShape(999.dp),
         border = androidx.compose.foundation.BorderStroke(1.dp, GlassBorder),
         colors = ButtonDefaults.outlinedButtonColors(
-            containerColor = Color.White.copy(alpha = 0.06f),
+            containerColor = Color.White.copy(alpha = 0.50f),
             contentColor = TextMain
         ),
         content = content
@@ -369,10 +413,10 @@ fun GlassTextField(
         visualTransformation = visualTransformation,
         shape = RoundedCornerShape(16.dp),
         colors = OutlinedTextFieldDefaults.colors(
-            focusedContainerColor = Color.White.copy(alpha = 0.06f),
-            unfocusedContainerColor = Color.White.copy(alpha = 0.04f),
+            focusedContainerColor = Color.White.copy(alpha = 0.74f),
+            unfocusedContainerColor = Color.White.copy(alpha = 0.58f),
             focusedBorderColor = AccentRed.copy(alpha = 0.6f),
-            unfocusedBorderColor = Color.White.copy(alpha = 0.10f),
+            unfocusedBorderColor = GlassBorder,
             focusedLabelColor = AccentRed,
             unfocusedLabelColor = TextSub,
             cursorColor = AccentRed
