@@ -101,9 +101,15 @@ fun BottomNavBar(
                 spotColor = ShadowHigh
             )
             .clip(RoundedCornerShape(999.dp))
-            .background(GlassBg)
+            .background(
+                brush = Brush.linearGradient(
+                    colors = listOf(GlassBg, Color.White.copy(alpha = 0.62f)),
+                    start = Offset(0f, 0f),
+                    end = Offset(Float.POSITIVE_INFINITY, Float.POSITIVE_INFINITY)
+                )
+            )
             .border(
-                width = 1.5.dp,
+                width = 1.dp,
                 brush = Brush.linearGradient(
                     colors = listOf(GlassBorderStart, GlassBorderEnd),
                     start = Offset(0f, 0f),
@@ -166,8 +172,8 @@ private fun GlassNavItem(
                 .size(40.dp)
                 .clip(CircleShape)
                 .background(
-                    if (isSelected) AccentRed.copy(alpha = 0.20f)
-                    else Color.Transparent
+                    if (isSelected) AccentRed.copy(alpha = 0.14f)
+                    else Color.White.copy(alpha = 0.34f)
                 ),
             contentAlignment = Alignment.Center
         ) {

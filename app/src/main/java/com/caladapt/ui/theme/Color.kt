@@ -2,71 +2,62 @@ package com.caladapt.ui.theme
 
 import androidx.compose.ui.graphics.Color
 
-// ── Design-System Palette — "Deep Emerald & Gold" ────────────────────────────
-//
-// A rich dark-mode palette built on near-black backgrounds with a curated
-// emerald / amber / light blue accent family.
-//
-// NOTE: Token NAMES are intentionally kept from the original palette
-// (AccentRed, AccentOrange …) so that every consumer file compiles
-// without changes. Only the colour VALUES have been swapped.
-// ────────────────────────────────────────────────────────────────────────────
+// ── FusionFit-inspired mobile palette ───────────────────────────────────────
+// Adapted from the reference frontend's airy glassmorphism UI: warm off-white
+// canvas, coral primary, mint secondary, sunny yellow accents, and soft ink.
 
 // App background
-val AppBackground       = Color(0xFF09090B)  // zinc-950 (very dark, almost black)
-val AppBackgroundAlt    = Color(0xFF18181B)  // zinc-900
+val AppBackground       = Color(0xFFFFF7F4)
+val AppBackgroundAlt    = Color(0xFFFFFBF8)
 
 // Text
-val TextMain            = Color(0xFFF4F4F5)  // zinc-100
-val TextSub             = Color(0xFFA1A1AA)  // zinc-400
+val TextMain            = Color(0xFF1F2029)
+val TextSub             = Color(0xFF7B7D8D)
 
-// Primary accents — names preserved, values updated
-val AccentRed           = Color(0xFF10B981)  // emerald-500 (primary CTA)
-val AccentOrange        = Color(0xFFF59E0B)  // amber-500 (secondary accent)
-val AccentTeal          = Color(0xFF38BDF8)  // light-blue-400 (progress, trends)
-val AccentBlue          = Color(0xFF8B5CF6)  // violet-500 (charts)
-val AccentYellow        = Color(0xFFFCD34D)  // amber-300 (protein, warm glow)
+// Primary accents — token names preserved for existing app consumers
+val AccentRed           = Color(0xFFFF6B81)
+val AccentOrange        = Color(0xFFFFA94D)
+val AccentTeal          = Color(0xFF5ED3C6)
+val AccentBlue          = Color(0xFF8B7CFF)
+val AccentYellow        = Color(0xFFFFD166)
 
 // Semantic
-val Success             = Color(0xFF34D399)  // emerald-400
-val Error               = Color(0xFFF43F5E)  // rose-500
-val RingStart           = Color(0xFF27272A)  // zinc-800 (muted ring track)
+val Success             = Color(0xFF2ECF8F)
+val Error               = Color(0xFFFF4D6D)
+val RingStart           = Color(0xFFE9E2DE)
 
 // ── Glass panel constants ──────────────────────────────────────────────────
-
-val GlassBg             = Color(0xFA18181B)  // rgba(24,24,27,0.98) — less transparent frosted glass
-val GlassBorderStart    = Color(0x26FFFFFF)  // rgba(255,255,255,0.15) — subtle top-left shimmer
-val GlassBorderEnd      = Color(0x0DFFFFFF)  // rgba(255,255,255,0.05) — near-invisible bottom-right
-val GlassInnerHighlight = Color(0x14FFFFFF)  // rgba(255,255,255,0.08) — faint specular
-val GlassBorder         = Color(0x1FFFFFFF)  // rgba(255,255,255,0.12) — thin luminous edge
+val GlassBg             = Color(0xBFFFFFFF)
+val GlassBorderStart    = Color(0xD9FFFFFF)
+val GlassBorderEnd      = Color(0x45FFFFFF)
+val GlassInnerHighlight = Color(0x99FFFFFF)
+val GlassBorder         = Color(0xB3FFFFFF)
 
 // Hero / coloured card
-val HeroGradientStart   = Color(0xFFA78BFA)  // violet-400
-val HeroGradientMid     = Color(0xFF818CF8)  // indigo-400
-val HeroGradientEnd     = Color(0xFF6366F1)  // indigo-500
-val HeroBorder          = Color(0x40FFFFFF)  // rgba(255,255,255,0.25)
+val HeroGradientStart   = Color(0xFFFF6B81)
+val HeroGradientMid     = Color(0xFFFFA94D)
+val HeroGradientEnd     = Color(0xFF5ED3C6)
+val HeroBorder          = Color(0xCCFFFFFF)
 
 // ── Shadows ───────────────────────────────────────────────────────────────
-val ShadowLow           = Color.Black.copy(alpha = 0.30f)
-val ShadowHigh          = Color.Black.copy(alpha = 0.50f)
-val ShadowRed           = AccentRed.copy(alpha = 0.30f)  // violet glow
+val ShadowLow           = Color(0x1F55404A)
+val ShadowHigh          = Color(0x2655404A)
+val ShadowRed           = AccentRed.copy(alpha = 0.28f)
 
 // ── Skeleton Loading ───────────────────────────────────────────────────────
-val SkeletonBase        = Color(0xFF1E293B)   // slate-800
-val SkeletonHighlight   = Color(0xFF334155)   // slate-700
+val SkeletonBase        = Color(0xFFFFECE7)
+val SkeletonHighlight   = Color(0xFFFFFFFF)
 
 // ── Macro chart colours ────────────────────────────────────────────────────
-
-val ChartProtein        = AccentOrange         // amber-400 (#FBBF24)
-val ChartCarbs          = AccentTeal           // cyan-400 (#22D3EE)
-val ChartFat            = Color(0xFF94A3B8)    // slate-400 — visible on dark
-val ChartCalories       = AccentRed            // violet-400
+val ChartProtein        = AccentOrange
+val ChartCarbs          = AccentTeal
+val ChartFat            = Color(0xFF9EA4B8)
+val ChartCalories       = AccentRed
 
 // Weight chart
-val ChartWeightRaw      = Color(0xFF64748B)    // slate-500
-val ChartWeightEMA      = AccentTeal           // cyan trend line
-val ChartTarget         = AccentOrange         // amber target line
+val ChartWeightRaw      = Color(0xFFB8B2C4)
+val ChartWeightEMA      = AccentTeal
+val ChartTarget         = AccentOrange
 
 // ── Badge / chip accents ───────────────────────────────────────────────────
-
-val BadgeRedBg          = AccentRed.copy(alpha = 0.15f)  // violet @ 15%
+val BadgeRedBg          = AccentRed.copy(alpha = 0.14f)
